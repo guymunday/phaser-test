@@ -17,6 +17,7 @@ export default class Preloader extends Phaser.Scene {
     this.load.image(TextureKeys.Bookcase2, "object_bookcase2.png")
     this.load.image(TextureKeys.LaserEnd, "object_laser_end.png")
     this.load.image(TextureKeys.LaserMiddle, "object_laser.png")
+    this.load.image(TextureKeys.Coin, "object_coin.png")
     // made using TexturPacker
     this.load.atlas(TextureKeys.RocketMouse, "character.png", "character.json")
   }
