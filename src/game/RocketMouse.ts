@@ -66,7 +66,10 @@ export default class RocketMouse extends Phaser.GameObjects.Container {
 
     switch (this.mouseState) {
       case MouseState.Running: {
-        if (this.cursors.space?.isDown) {
+        if (
+          this.cursors.space?.isDown ||
+          this.scene.input.activePointer?.isDown
+        ) {
           // set y acceleration to -600 if so
           body.setAccelerationY(-1000)
           this.enableJetpack(true)
@@ -76,12 +79,6 @@ export default class RocketMouse extends Phaser.GameObjects.Container {
           body.setAccelerationY(0)
           this.enableJetpack(false)
         }
-
-        // if (this.cursors.right?.isDown) {
-        //   body.setAccelerationX(600)
-        // } else {
-        //   body.setVelocityX(0)
-        // }
 
         if (body.blocked.down) {
           this.mouse.play(AnimationKeys.RocketMouseRun, true)
