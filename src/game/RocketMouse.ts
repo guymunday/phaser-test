@@ -15,9 +15,12 @@ export default class RocketMouse extends Phaser.GameObjects.Container {
   private flames: Phaser.GameObjects.Sprite
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys
   private mouse: Phaser.GameObjects.Sprite
+  // private clickPosition: number
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y)
+
+    // this.clickPosition = scene.scale.width / 2
 
     this.mouse = scene.add
       .sprite(0, 0, TextureKeys.RocketMouse)
@@ -70,7 +73,7 @@ export default class RocketMouse extends Phaser.GameObjects.Container {
           this.cursors.space?.isDown ||
           this.scene.input.activePointer?.isDown
         ) {
-          // set y acceleration to -600 if so
+          // this.clickPosition = this.scene.input.activePointer.position.x
           body.setAccelerationY(-1000)
           this.enableJetpack(true)
           this.mouse.play(AnimationKeys.RocketMouseFly, true)
@@ -79,6 +82,20 @@ export default class RocketMouse extends Phaser.GameObjects.Container {
           body.setAccelerationY(0)
           this.enableJetpack(false)
         }
+
+        // if (
+        //   this.scene.input.activePointer?.isDown &&
+        //   this.clickPosition < this.scene.scale.width / 2 - 50
+        // ) {
+        //   body.setAccelerationX(-500)
+        // } else if (
+        //   this.scene.input.activePointer?.isDown &&
+        //   this.clickPosition > this.scene.scale.width / 2 + 50
+        // ) {
+        //   body.setAccelerationX(500)
+        // } else if (!this.scene.input.activePointer?.isDown) {
+        //   body.setAccelerationX(0)
+        // }
 
         if (body.blocked.down) {
           this.mouse.play(AnimationKeys.RocketMouseRun, true)
