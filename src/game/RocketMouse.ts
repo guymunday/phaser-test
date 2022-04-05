@@ -68,7 +68,7 @@ export default class RocketMouse extends Phaser.GameObjects.Container {
       case MouseState.Running: {
         if (this.cursors.space?.isDown) {
           // set y acceleration to -600 if so
-          body.setAccelerationY(-600)
+          body.setAccelerationY(-1000)
           this.enableJetpack(true)
           this.mouse.play(AnimationKeys.RocketMouseFly, true)
         } else {
